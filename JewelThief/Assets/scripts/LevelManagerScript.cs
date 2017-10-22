@@ -11,8 +11,11 @@ public class LevelManagerScript : MonoBehaviour {
     public GameObject[] hearts;
     public TextMesh timeText;
     float levelStartTime;
+    float currentTime;
+    static bool active;
 	// Use this for initialization
 	void Start () {
+        active = true;
 	}
 
     // Update is called once per frame
@@ -26,7 +29,9 @@ public class LevelManagerScript : MonoBehaviour {
                 else
                     hearts[i].GetComponent<SpriteRenderer>().color = Color.black;
             }
-            timeText.text = "" + Mathf.Floor((Time.timeSinceLevelLoad - levelStartTime) * 100) /100f;
+            if (active)
+                currentTime = Time.timeSinceLevelLoad;
+            timeText.text = "" + Mathf.Floor((currentTime - levelStartTime) * 100) /100f;
 
         }
     }
@@ -46,6 +51,7 @@ public class LevelManagerScript : MonoBehaviour {
     {
         levelStartTime = Time.timeSinceLevelLoad;
         SceneManager.LoadScene(levelNum);
+        active = true;
     }
 
     void RegisterKill()
@@ -53,6 +59,10 @@ public class LevelManagerScript : MonoBehaviour {
         kills++;
     }
 
+    public static void Freeze()
+    {
+        active = false;
+    }
 
 
 

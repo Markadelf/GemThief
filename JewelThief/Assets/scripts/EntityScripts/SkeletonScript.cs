@@ -31,9 +31,9 @@ public class SkeletonScript : MonoBehaviour {
             {
                 Vector2 aim; 
                 if(faceRight)
-                    aim = new Vector2(bulletSpeed + loaded / 4f, 9);
+                    aim = new Vector2(bulletSpeed + loaded / 4f, 5) * 1.4f;
                 else
-                    aim = new Vector2(-bulletSpeed - loaded / 4f, 9);
+                    aim = new Vector2(-bulletSpeed - loaded / 4f, 5) * 1.4f;
                 GameObject shot = Instantiate(proj, transform.position, transform.rotation);
                 shot.GetComponent<Rigidbody2D>().velocity = aim;
                 loaded--;
@@ -56,5 +56,17 @@ public class SkeletonScript : MonoBehaviour {
             if (PlayerContolScript.player != null)
                 faceRight = PlayerContolScript.player.transform.position.x > transform.position.x;
         }
-	}
+        if (faceRight)
+        {
+            Vector3 scale = transform.localScale;
+            scale.x = Mathf.Abs(scale.x);
+            transform.localScale = scale;
+        }
+        else
+        {
+            Vector3 scale = transform.localScale;
+            scale.x = -Mathf.Abs(scale.x);
+            transform.localScale = scale;
+        }
+    }
 }

@@ -32,12 +32,9 @@ public class DamagableScript : MonoBehaviour {
         {
             if (endGame)
             {
-                Debug.Log("DOOM AND GLOOM");
+                LevelManagerScript.Freeze();
             }
-            else
-            {
-                Destroy(gameObject);
-            }
+            Destroy(gameObject);
         }
 
     }
