@@ -67,7 +67,18 @@ public class KnightScript : MonoBehaviour {
         {
             faceRight = true;
         }
-
+        if (faceRight)
+        {
+            Vector3 scale = transform.localScale;
+            scale.x = Mathf.Abs(scale.x);
+            transform.localScale = scale;
+        }
+        else
+        {
+            Vector3 scale = transform.localScale;
+            scale.x = -Mathf.Abs(scale.x);
+            transform.localScale = scale;
+        }
     }
 
 
