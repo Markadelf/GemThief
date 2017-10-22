@@ -58,7 +58,7 @@ public class PlayerControlScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if(state == PlayerState.WallSlide && Mathf.Abs(rigid.velocity.x) > .3f)
+        if(state == PlayerState.WallSlide && Mathf.Abs(rigid.velocity.x) > .6f)
         {
             state = PlayerState.Airborne;
         }
@@ -66,7 +66,7 @@ public class PlayerControlScript : MonoBehaviour {
         if(state == PlayerState.Melee)
         {
             currentManueverTime += Time.deltaTime;
-            if(currentManueverTime > .3f)
+            if(currentManueverTime > 1f)
             {
                 currentManueverTime = 0;
                 state = PlayerState.Idle;
@@ -108,7 +108,7 @@ public class PlayerControlScript : MonoBehaviour {
             }
         }
 
-        
+        bool notBoth = true;
         //Jump logic
         if (state == PlayerState.Idle || state == PlayerState.Running || state == PlayerState.WallSlide)
         {
@@ -123,15 +123,16 @@ public class PlayerControlScript : MonoBehaviour {
                     if (faceRight)
                         push = -push;
                     rigid.AddForce(push);
+                    notBoth = false;
                 }
                 state = PlayerState.Airborne;
             }
         }
-
+        
 
 
         //Move left or right if relevant
-        if (state == PlayerState.Running || state == PlayerState.Idle || state == PlayerState.Airborne || state == PlayerState.WallSlide)
+        if (state == PlayerState.Running || state == PlayerState.Idle || state == PlayerState.Airborne || state == PlayerState.WallSlide && notBoth)
         {
 
             if (Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow))
@@ -199,7 +200,7 @@ public class PlayerControlScript : MonoBehaviour {
                 }
                 else
                 {
-                    rigid.velocity = new Vector2(rigid.velocity.x * .9f, rigid.velocity.y);
+                    rigid.velocity = new Vector2(rigid.velocity.x * .95f, rigid.velocity.y);
                 }
             }
         }
