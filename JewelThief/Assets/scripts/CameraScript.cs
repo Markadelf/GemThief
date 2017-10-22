@@ -11,7 +11,7 @@ public class CameraScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if(PlayerContolScript.player != null)
-            transform.position = PlayerContolScript.player.transform.position + new Vector3(0,0,-10);
+        if(PlayerControlScript.player != null)
+            transform.position = PlayerControlScript.player.transform.position + new Vector3(0,0,-10);
 	}
 }

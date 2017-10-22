@@ -15,9 +15,9 @@ public class HomingScript : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (PlayerContolScript.player != null)
+        if (PlayerControlScript.player != null)
         {
-            Vector3 vec = (PlayerContolScript.player.transform.position - transform.position);
+            Vector3 vec = (PlayerControlScript.player.transform.position - transform.position);
             rigid.velocity = vec * 3 / vec.magnitude;
         }
     }

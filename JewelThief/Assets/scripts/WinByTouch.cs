@@ -16,7 +16,7 @@ public class WinByTouch : MonoBehaviour {
 
     void OnTriggerStay2D(Collider2D col)
     {
-        if(col.gameObject == PlayerContolScript.player)
+        if(col.gameObject == PlayerControlScript.player)
         {
             LevelManagerScript.Freeze();
         }

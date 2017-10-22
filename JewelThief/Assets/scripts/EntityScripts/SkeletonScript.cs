@@ -53,8 +53,8 @@ public class SkeletonScript : MonoBehaviour {
         else
         {
             volleyTimer -= Time.deltaTime;
-            if (PlayerContolScript.player != null)
-                faceRight = PlayerContolScript.player.transform.position.x > transform.position.x;
+            if (PlayerControlScript.player != null)
+                faceRight = PlayerControlScript.player.transform.position.x > transform.position.x;
         }
         if (faceRight)
         {

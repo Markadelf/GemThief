@@ -19,7 +19,7 @@ public enum PlayerState
     
 }
 
-public class PlayerContolScript : MonoBehaviour {
+public class PlayerControlScript : MonoBehaviour {
 
     //static ref
     public static GameObject player;
@@ -57,6 +57,12 @@ public class PlayerContolScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if(state == PlayerState.WallSlide && Mathf.Abs(rigid.velocity.x) > .3f)
+        {
+            state = PlayerState.Airborne;
+        }
+
         if(state == PlayerState.Melee)
         {
             currentManueverTime += Time.deltaTime;
@@ -130,11 +136,13 @@ public class PlayerContolScript : MonoBehaviour {
 
             if (Input.GetKey(KeyCode.RightArrow) && !Input.GetKey(KeyCode.LeftArrow))
             {
+                
+                    
+                rigid.AddForce(new Vector2((40), 0));
                 if (state != PlayerState.WallSlide || !faceRight)
                 {
                     if (state == PlayerState.WallSlide)
                         state = PlayerState.Airborne;
-                    rigid.AddForce(new Vector2((40), 0));
                     if (state == PlayerState.Idle)
                     {
                         state = PlayerState.Running;
@@ -153,11 +161,11 @@ public class PlayerContolScript : MonoBehaviour {
             }
             else if (!Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.LeftArrow))
             {
+                    rigid.AddForce(new Vector2(-(40), 0));
                 if (state != PlayerState.WallSlide || faceRight)
                 {
                     if (state == PlayerState.WallSlide)
                         state = PlayerState.Airborne;
-                    rigid.AddForce(new Vector2(-(40), 0));
                     if (state == PlayerState.Idle)
                     {
                         state = PlayerState.Running;

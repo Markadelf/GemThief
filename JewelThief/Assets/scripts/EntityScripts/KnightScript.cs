@@ -31,7 +31,7 @@ public class KnightScript : MonoBehaviour {
     void OnCollisionStay2D(Collision2D col)
     {
         ContactPoint2D[] points = col.contacts;
-        if (points.Length == 0 || col.gameObject == PlayerContolScript.player)
+        if (points.Length == 0 || col.gameObject == PlayerControlScript.player)
             return;
         float highest = points[0].point.y;
         for (int i = 1; i < points.Length; i++)

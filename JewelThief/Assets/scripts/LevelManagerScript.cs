@@ -20,11 +20,11 @@ public class LevelManagerScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
-        if (PlayerContolScript.player != null) {
-            bar.transform.localScale = new Vector3(PlayerContolScript.player.GetComponent<PlayerContolScript>().momentum / 180f, .05f, .1f);
+        if (PlayerControlScript.player != null) {
+            bar.transform.localScale = new Vector3(PlayerControlScript.player.GetComponent<PlayerControlScript>().momentum / 180f, .05f, .1f);
             for(int i = 0; i < hearts.Length; i++)
             {
-                if(PlayerContolScript.player.GetComponent<DamagableScript>().health > i)
+                if(PlayerControlScript.player.GetComponent<DamagableScript>().health > i)
                     hearts[i].GetComponent<SpriteRenderer>().color = new Color(1f, .25f,.25f);
                 else
                     hearts[i].GetComponent<SpriteRenderer>().color = Color.black;
