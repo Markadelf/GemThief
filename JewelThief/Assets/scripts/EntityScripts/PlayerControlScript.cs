@@ -58,7 +58,7 @@ public class PlayerControlScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if(state == PlayerState.WallSlide && Mathf.Abs(rigid.velocity.x) > .6f)
+        if(state == PlayerState.WallSlide && ((faceRight && rigid.velocity.x > .6f) || (!faceRight && rigid.velocity.x < -.6f)))
         {
             state = PlayerState.Airborne;
         }
@@ -217,7 +217,7 @@ public class PlayerControlScript : MonoBehaviour {
 
 
         //Reface the player
-        if (rigid.velocity.x != 0 && state != PlayerState.AirSlide)
+        if (rigid.velocity.x != 0 && state != PlayerState.AirSlide && state != PlayerState.WallSlide)
         {
             faceRight = rigid.velocity.x > 0;
         }
